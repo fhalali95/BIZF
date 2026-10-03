@@ -235,6 +235,64 @@
     <button class="save-btn">Save Order</button>
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    const selects = document.querySelectorAll("select");
+    const summaryValues = document.querySelectorAll(".summary-row strong");
+    const totalValue = document.querySelector(".summary-row.total span:last-child");
+
+    const quantity = numberInputs[0];
+    const unitPrice = numberInputs[1];
+    const unitCost = numberInputs[2];
+    const discountValue = numberInputs[3];
+    const discountType = selects[1];
+
+    function calculateOrder() {
+
+        const qty = parseFloat(quantity.value) || 0;
+        const price = parseFloat(unitPrice.value) || 0;
+        const cost = parseFloat(unitCost.value) || 0;
+        const discount = parseFloat(discountValue.value) || 0;
+
+        const subtotal = qty * price;
+        const totalCost = qty * cost;
+
+        let discountAmount = 0;
+
+        if (discountType.value === "Percentage (%)") {
+            discountAmount = subtotal * (discount / 100);
+        }
+
+        if (discountType.value === "Fixed Amount (AED)") {
+            discountAmount = discount;
+        }
+
+        if (discountAmount > subtotal) {
+            discountAmount = subtotal;
+        }
+
+        const total = subtotal - discountAmount;
+        const profit = total - totalCost;
+
+        summaryValues[0].textContent = "AED " + subtotal.toFixed(2);
+        summaryValues[1].textContent = "AED " + discountAmount.toFixed(2);
+        summaryValues[2].textContent = "AED " + totalCost.toFixed(2);
+        summaryValues[3].textContent = "AED " + profit.toFixed(2);
+
+        totalValue.textContent = "AED " + total.toFixed(2);
+    }
+
+    quantity.addEventListener("input", calculateOrder);
+    unitPrice.addEventListener("input", calculateOrder);
+    unitCost.addEventListener("input", calculateOrder);
+    discountValue.addEventListener("input", calculateOrder);
+    discountType.addEventListener("change", calculateOrder);
+
+    calculateOrder();
+});
+</script>
+    
 </body>
 </html>
