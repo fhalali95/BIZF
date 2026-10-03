@@ -4,14 +4,237 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Order | BizF</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f6f7f9;
+            color: #222;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #d8d8d8;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: none;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #111;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 650px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>New Order</h1>
-    <p>Create a new customer order.</p>
+<div class="container">
 
-    <a href="index.html">← Back to Dashboard</a>
+    <a class="back" href="index.html">← Back to Dashboard</a>
+
+    <h1>New Order</h1>
+    <p class="subtitle">Create and calculate a new customer order.</p>
+
+    <div class="card">
+        <h2>Customer Details</h2>
+
+        <div class="form-grid">
+            <div>
+                <label>Customer Name</label>
+                <input type="text" placeholder="Enter customer name">
+            </div>
+
+            <div>
+                <label>Phone Number</label>
+                <input type="tel" placeholder="Enter phone number">
+            </div>
+
+            <div>
+                <label>Order Date</label>
+                <input type="date">
+            </div>
+
+            <div>
+                <label>Order Status</label>
+                <select>
+                    <option>Pending</option>
+                    <option>Confirmed</option>
+                    <option>Completed</option>
+                    <option>Cancelled</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Order Item</h2>
+
+        <div class="form-grid">
+            <div>
+                <label>Product</label>
+                <input type="text" placeholder="Product name">
+            </div>
+
+            <div>
+                <label>Quantity</label>
+                <input type="number" min="1" value="1">
+            </div>
+
+            <div>
+                <label>Unit Price (AED)</label>
+                <input type="number" min="0" step="0.01" placeholder="0.00">
+            </div>
+
+            <div>
+                <label>Unit Cost (AED)</label>
+                <input type="number" min="0" step="0.01" placeholder="0.00">
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Discount</h2>
+
+        <div class="form-grid">
+            <div>
+                <label>Discount Type</label>
+                <select>
+                    <option>No Discount</option>
+                    <option>Percentage (%)</option>
+                    <option>Fixed Amount (AED)</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Discount Value</label>
+                <input type="number" min="0" step="0.01" value="0">
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>AED 0.00</strong>
+        </div>
+
+        <div class="summary-row">
+            <span>Discount</span>
+            <strong>AED 0.00</strong>
+        </div>
+
+        <div class="summary-row">
+            <span>Cost</span>
+            <strong>AED 0.00</strong>
+        </div>
+
+        <div class="summary-row">
+            <span>Profit</span>
+            <strong>AED 0.00</strong>
+        </div>
+
+        <div class="summary-row total">
+            <span>Total</span>
+            <span>AED 0.00</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <label>Notes</label>
+        <textarea placeholder="Add order notes..."></textarea>
+    </div>
+
+    <button class="save-btn">Save Order</button>
+
+</div>
 
 </body>
 </html>
