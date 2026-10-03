@@ -169,17 +169,17 @@ textarea {
 
             <div>
                 <label>Quantity</label>
-                <input type="number" min="1" value="1">
+                <input type="text" inputmode="decimal" min="1" value="1">
             </div>
 
             <div>
                 <label>Unit Price (AED)</label>
-                <input type="number" min="0" step="0.01" placeholder="0.00">
+               <input type="text" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
             </div>
 
             <div>
                 <label>Unit Cost (AED)</label>
-                <input type="number" min="0" step="0.01" placeholder="0.00">
+                <input type="text" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
             </div>
         </div>
     </div>
@@ -199,7 +199,7 @@ textarea {
 
             <div>
                 <label>Discount Value</label>
-                <input type="number" min="0" step="0.01" value="0">
+              <input type="text" inputmode="decimal" min="0" step="0.01" value="0">
             </div>
         </div>
     </div>
@@ -244,7 +244,7 @@ textarea {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const numberInputs = document.querySelectorAll('input[type="number"]');
+    const numberInputs = document.querySelectorAll('input[inputmode="decimal"]');
     const selects = document.querySelectorAll("select");
     const summaryValues = document.querySelectorAll(".summary-row strong");
     const totalValue = document.querySelector(".summary-row.total span:last-child");
